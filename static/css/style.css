@@ -280,3 +280,50 @@ body {
     color: #ff3e3e;
     padding: 40px;
 }
+
+/* Card Actions (IMDb & Wiki Links) */
+.year {
+    color: var(--text-muted);
+    font-weight: 400;
+    font-size: 0.95rem;
+}
+
+.card-actions {
+    margin-top: auto;
+    padding-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    flex: 1;
+    text-align: center;
+    padding: 8px 0;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.imdb-btn {
+    background-color: #f5c518;
+    color: #000;
+}
+
+.imdb-btn:hover {
+    background-color: #e3b616;
+    transform: translateY(-2px);
+}
+
+.wiki-btn {
+    background-color: transparent;
+    color: var(--text-main);
+    border-color: var(--border);
+}
+
+.wiki-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}

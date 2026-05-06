@@ -127,7 +127,9 @@ class CineRetriever:
                 "title": doc['title'],
                 "poster_url": doc.get('poster_url', f"https://image.tmdb.org/t/p/w500{doc.get('poster_path', '')}"),
                 "score": round(score, 2),
-                "overview": doc.get('overview', doc.get('text', doc.get('plot', '')))
+                "overview": doc.get('overview', doc.get('text', doc.get('plot', ''))),
+                "release_year": doc.get('release year', ''),
+                "wiki_page": doc.get('wiki page', '')
             })
         return results
     
