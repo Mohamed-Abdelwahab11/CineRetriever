@@ -14,6 +14,18 @@ async function fetchPoster(title, year) {
     return null;
 }
 
+function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function highlightText(text, query) {
+    if (!query) return text;
+    const terms = query.trim().split(/\s+/).filter(t => t.length > 2).map(escapeRegExp);
+    if (terms.length === 0) return text;
+    const regex = new RegExp(`(${terms.join('|')})`, 'gi');
+    return text.replace(regex, '<mark>$1</mark>');
+}
+
 async function performSearch() {
     const query = document.getElementById('queryInput').value;
     const grid = document.getElementById('resultsGrid');
@@ -38,21 +50,22 @@ async function performSearch() {
             const escapedTitle = movie.title.replace(/'/g, "&apos;").replace(/"/g, "&quot;");
             const imdbUrl = `https://www.imdb.com/find?q=${encodeURIComponent(movie.title + ' ' + movie.release_year)}`;
             const wikiUrl = movie.wiki_page || '#';
+            const highlightedOverview = highlightText(movie.overview, query);
             
             // Initial render with dynamic CSS poster
             const cardId = 'movie-' + Math.random().toString(36).substr(2, 9);
             grid.innerHTML += `
-                <div class="movie-card" id="${cardId}">
+                <div class="movie-card" id="${cardId}" onclick="this.classList.toggle('expanded')">
                     <div class="score-tag">${movie.score}</div>
                     <div class="card-image-wrapper" id="img-wrapper-${cardId}">
                         <div class="dynamic-poster"><h3>${escapedTitle}</h3></div>
                     </div>
                     <div class="card-info">
                         <h3>${escapedTitle} <span class="year">(${movie.release_year})</span></h3>
-                        <p>${movie.overview}</p>
+                        <p class="plot-text">${highlightedOverview}</p>
                         <div class="card-actions">
-                            <a href="${imdbUrl}" target="_blank" class="btn imdb-btn">IMDb</a>
-                            <a href="${wikiUrl}" target="_blank" class="btn wiki-btn">Wikipedia</a>
+                            <a href="${imdbUrl}" target="_blank" class="btn imdb-btn" onclick="event.stopPropagation()">IMDb</a>
+                            <a href="${wikiUrl}" target="_blank" class="btn wiki-btn" onclick="event.stopPropagation()">Wikipedia</a>
                         </div>
                     </div>
                 </div>
