@@ -44,13 +44,24 @@ class CineRetriever:
         tokens = text.split()
         return [self.stemmer.stem(w) for w in tokens if w not in self.stop_words]
 
+    def _get_comprehensive_text(self, doc):
+        """Constructs a comprehensive document representation with Title Boosting."""
+        title = str(doc.get('title', ''))
+        director = str(doc.get('director', ''))
+        cast = str(doc.get('cast', ''))
+        genre = str(doc.get('genre', ''))
+        plot = str(doc.get('overview', doc.get('text', doc.get('plot', ''))))
+        
+        # Title Boosting (x5) + Metadata + Plot
+        return f"{title} " * 5 + f"{director} {cast} {genre} {plot}"
+
     def _build_index(self):
         # Lab 3: Inverted Indexing Implementation
         total_len = 0
         for doc in self.corpus:
             doc_id = doc['id']
-            # Using 'overview', 'text', or 'plot' for content analysis
-            content = doc.get('overview', doc.get('text', doc.get('plot', '')))
+            # Using comprehensive text for indexing instead of just plot
+            content = self._get_comprehensive_text(doc)
             tokens = self.preprocess(content)
             self.doc_lengths[doc_id] = len(tokens)
             total_len += len(tokens)
@@ -94,7 +105,7 @@ class CineRetriever:
         for doc_id, _ in top_docs:
             doc = next((d for d in self.corpus if d['id'] == doc_id), None)
             if doc:
-                content = doc.get('overview', doc.get('text', doc.get('plot', '')))
+                content = self._get_comprehensive_text(doc)
                 expansion_terms.extend(self.preprocess(content))
             
         # Select most common terms from relevant documents
