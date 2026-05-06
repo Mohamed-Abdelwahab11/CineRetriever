@@ -20,7 +20,7 @@ async function performSearch() {
             grid.innerHTML += `
                 <div class="movie-card">
                     <div class="score-tag">${movie.score}</div>
-                    <img src="${movie.poster_url}" alt="${movie.title}" onerror="this.src='https://via.placeholder.com/500x750?text=No+Poster'">
+                    <img src="${movie.poster_url}" alt="${movie.title}" onerror="this.onerror=null; this.src='https://via.placeholder.com/500x750?text=No+Poster'">
                     <div class="card-info">
                         <h3>${movie.title}</h3>
                         <p>${movie.overview}</p>
