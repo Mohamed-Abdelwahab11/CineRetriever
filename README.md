@@ -60,8 +60,9 @@ http://127.0.0.1:8080
 ---
 
 ## 📸 Screenshots
+<img width="917" height="163" alt="Screenshot 2026-05-06 at 6 01 09 AM" src="https://github.com/user-attachments/assets/babad873-0251-4646-aa73-5ab4a0aa2ac0" />
+<img width="1185" height="808" alt="Screenshot 2026-05-06 at 6 00 58 AM" src="https://github.com/user-attachments/assets/e6b88c98-9ef7-4145-b214-8ee2eac4b259" />
+<img width="1356" height="795" alt="Screenshot 2026-05-06 at 6 00 41 AM" src="https://github.com/user-attachments/assets/a11f1c4e-cbd3-4b47-abdb-72896fe7b021" />
 
-*(To be added)* 
 
 ---
-*Built with ❤️ for Cinema and Data Science.*
