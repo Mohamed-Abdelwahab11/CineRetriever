@@ -8,11 +8,13 @@
     <h1>CineRetriever</h1>
     
     <div class="search-container">
-        <input type="text" id="query" placeholder="Describe a movie scene, mood, or setup...">
+        <input type="text" id="queryInput" placeholder="Describe a movie scene, mood, or setup..." onkeypress="handleKeyPress(event)">
         <button onclick="performSearch()">Search</button>
     </div>
+    
+    <div id="stats" style="text-align: center; margin-bottom: 20px; color: #888;"></div>
 
-    <div id="results-grid">
+    <div id="resultsGrid" class="results-grid">
         <!-- Results will be injected here via JavaScript -->
     </div>
 

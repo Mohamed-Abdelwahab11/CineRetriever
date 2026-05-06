@@ -35,4 +35,4 @@ async function performSearch() {
 
 function handleKeyPress(e) {
     if (e.key === 'Enter') performSearch();
-}بي
+}
