@@ -1,19 +1,67 @@
-# CineRetriever 🎬  
-### *Bridging the Gap Between Natural Language and Cinematic Production*
+# CineRetriever 🎬
 
-In the world of high-stakes filmmaking, finding the right reference or scene in a vast library of scripts is like finding a needle in a haystack. **CineRetriever** is a domain-specific Search Engine designed for filmmakers, cinematographers, and script supervisors.
+**CineRetriever** is a highly advanced, semantic search engine and information retrieval system built specifically for cinema. It processes and indexes a massive dataset of over **134,000+ movies** to allow users to search by mood, plot details, actors, or directors, returning highly relevant cinematic matches in milliseconds.
 
-## 🎥 The Core Problem
-Traditional metadata search is rigid. Producers often need to search for **moods, complex lighting setups, or abstract plot structures** that basic keyword search fails to capture.
+Wrapped in a premium, Netflix-inspired user interface, CineRetriever bridges the gap between complex Information Retrieval mathematics and a flawless user experience.
 
-## 🛠 The Technical Edge
-CineRetriever isn't just a database; it’s an intelligent retrieval system built on:
+---
 
-- **Semantic Narrative Processing**: Using custom NLP pipelines to understand the nuances of screenplay descriptions.
-- **Probabilistic Ranking (BM25)**: A sophisticated math engine that calculates the relevance of a scene based on the rarity and density of cinematic terms.
-- **Pseudo-Relevance Feedback (PRF)**: An adaptive expansion logic that learns from the context of your query to find "visually similar" concepts without explicit keywords.
+## ✨ Features
 
-## 🌟 Why it Matters for Cinema
-1. **Script Breakdown**: Automated discovery of recurring visual motifs.
-2. **VFX Reference**: Instantly find scenes with specific atmospheric conditions (e.g., "Neon-noir rainy street").
-3. **Production Timing**: (Integrated with ScriptLens logic) to align script length with production reality.
+### 🧠 Advanced Information Retrieval Engine
+- **BM25 Algorithmic Ranking**: Uses the state-of-the-art BM25 probabilistic ranking function (the same mathematical foundation behind Elasticsearch) to score and rank movies based on query relevance.
+- **Comprehensive Multi-Field Indexing**: The engine doesn't just search titles. It builds an inverted index across the movie's `Title`, `Director`, `Cast`, `Genre`, and full `Plot`.
+- **Title Boosting**: Mathematically prioritizes exact movie titles, ensuring navigational queries (e.g., *"12 Angry Men"*) instantly rise to the top.
+- **Pseudo-Relevance Feedback (PRF)**: Automatically expands vague search queries by extracting common keywords from the top initial results and re-searching silently for deeper accuracy.
+- **NLP Text Processing**: Implements Tokenization, Stop-word removal, and Porter Stemming (via NLTK) to understand the *root meaning* of words rather than just literal matches.
+
+### 🖥️ Premium User Interface (GUI)
+- **Glassmorphism Design**: Features a modern, ultra-sleek dark theme with frosted glass search components and smooth micro-animations.
+- **Dynamic TMDB Posters**: Integrates with the TMDB API to fetch high-quality, real-time movie posters. 
+- **CSS Poster Fallbacks**: If an image fails to load or doesn't exist, the UI gracefully generates a cinematic, gradient-based CSS poster featuring the movie title.
+- **Interactive Plot Highlighting**: Search terms are automatically highlighted (`<mark>`) in Netflix-red within the movie's plot, showing exactly *why* a movie matched your query.
+- **Expandable Movie Cards**: Click on any movie card to smoothly expand it and read the full, untruncated plot.
+- **External Integration**: One-click action buttons redirect users to IMDb (auto-generating search queries based on title and year) and official Wikipedia pages.
+
+---
+
+## 🛠️ Technology Stack
+- **Backend**: Python, Flask, Pandas (for data ingestion).
+- **NLP & Indexing**: NLTK (Natural Language Toolkit), Custom Inverted Index, BM25 Formula.
+- **Frontend**: HTML5, Vanilla JavaScript, CSS3 (CSS Grid, Glassmorphism).
+- **External APIs**: TMDB (The Movie Database).
+
+---
+
+## 🚀 How to Run Locally
+
+### 1. Prerequisites
+Ensure you have Python 3 installed. You will need the following libraries:
+```bash
+pip install flask pandas nltk
+```
+*Note: The system will automatically download NLTK data (`stopwords`) upon first run.*
+
+### 2. Dataset
+The project is built to handle the [Kaggle Wikipedia Movie Plots dataset](https://www.kaggle.com/datasets/jrobischon/wikipedia-movie-plots). Ensure the `wiki_movie_plots_deduped.csv` file is present in the `data/` directory (or update the path in `app.py`).
+
+### 3. Start the Server
+```bash
+python3 app.py
+```
+> **Note:** Because CineRetriever builds a massive inverted index of 134,000+ movies entirely in memory on startup, the server may take **3 to 5 minutes** to fully initialize. Please wait until you see `Engine initialized...` in the terminal.
+
+### 4. Access the UI
+Open your web browser and navigate to:
+```
+http://127.0.0.1:8080
+```
+
+---
+
+## 📸 Screenshots
+
+*(To be added)* 
+
+---
+*Built with ❤️ for Cinema and Data Science.*
