@@ -24,8 +24,10 @@ class CineRetriever:
     def _load_data(self, path):
         # Lab 1: Data Acquisition
         # Fix for ValueError if path is passed as a list
-        actual_path = path[0] if isinstance(path, list) else path
-        df = pd.read_csv(actual_path)
+        if isinstance(path, list):
+            df = pd.DataFrame(path)
+        else:
+            df = pd.read_csv(path)
         
         # Ensure 'id' column exists for indexing; fallback to title hash if missing
         if 'id' not in df.columns:
@@ -44,8 +46,9 @@ class CineRetriever:
         total_len = 0
         for doc in self.corpus:
             doc_id = doc['id']
-            # Using 'overview' for content analysis
-            tokens = self.preprocess(doc.get('overview', ''))
+            # Using 'overview', 'text', or 'Plot' for content analysis
+            content = doc.get('overview', doc.get('text', doc.get('Plot', '')))
+            tokens = self.preprocess(content)
             self.doc_lengths[doc_id] = len(tokens)
             total_len += len(tokens)
             
@@ -88,7 +91,8 @@ class CineRetriever:
         for doc_id, _ in top_docs:
             doc = next((d for d in self.corpus if d['id'] == doc_id), None)
             if doc:
-                expansion_terms.extend(self.preprocess(doc.get('overview', '')))
+                content = doc.get('overview', doc.get('text', doc.get('Plot', '')))
+                expansion_terms.extend(self.preprocess(content))
             
         # Select most common terms from relevant documents
         common_terms = [t for t, _ in Counter(expansion_terms).most_common(num_terms)]
@@ -118,9 +122,9 @@ class CineRetriever:
             results.append({
                 "id": doc['id'],
                 "title": doc['title'],
-                "poster_url": f"https://image.tmdb.org/t/p/w500{doc.get('poster_path', '')}",
+                "poster_url": doc.get('poster_url', f"https://image.tmdb.org/t/p/w500{doc.get('poster_path', '')}"),
                 "score": round(score, 2),
-                "overview": doc.get('overview', '')
+                "overview": doc.get('overview', doc.get('text', doc.get('Plot', '')))
             })
         return results
     
