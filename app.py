@@ -3,25 +3,12 @@ from ir_engine import CineRetriever
 
 app = Flask(__name__)
 
-# Dummy Dataset (Replace this with your Kaggle/Movie JSON later)
-# Must include 'poster_url' for the UI requirement
-movie_corpus = [
-    {
-        "id": 1, 
-        "title": "Inception", 
-        "text": "A thief who steals corporate secrets through the use of dream-sharing technology.",
-        "poster_url": "https://image.tmdb.org/t/p/w500/edv5CZvnc0U9IPC68q1Mv0mS0Mc.jpg"
-    },
-    {
-        "id": 2, 
-        "title": "Interstellar", 
-        "text": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
-        "poster_url": "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NIvlrTnYm0FWvS0.jpg"
-    }
-]
+import pandas as pd
 
-# Initialize the Engine (Phase 1: Indexing)
-engine = CineRetriever(movie_corpus)
+# Load the full Dataset
+print("Loading dataset and building index... This may take a few minutes for 134k+ movies.")
+engine = CineRetriever("data/wiki_movie_plots_deduped.csv")
+print("Engine initialized and ready!")
 
 @app.route('/')
 def index():
