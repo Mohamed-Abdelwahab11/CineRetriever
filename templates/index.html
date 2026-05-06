@@ -1,22 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <title>CineRetriever</title>
 </head>
 <body>
-    <h1>CineRetriever</h1>
-    
-    <div class="search-container">
-        <input type="text" id="queryInput" placeholder="Describe a movie scene, mood, or setup..." onkeypress="handleKeyPress(event)">
-        <button onclick="performSearch()">Search</button>
-    </div>
-    
-    <div id="stats" style="text-align: center; margin-bottom: 20px; color: #888;"></div>
+    <header class="hero">
+        <h1 class="logo">CineRetriever</h1>
+        <p class="subtitle">Discover cinematic masterpieces through intelligent search.</p>
+        
+        <div class="search-container">
+            <div class="search-box">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="queryInput" placeholder="Describe a movie scene, mood, or setup..." onkeypress="handleKeyPress(event)">
+                <button onclick="performSearch()">Search</button>
+            </div>
+        </div>
+        <div id="stats" class="stats"></div>
+    </header>
 
-    <div id="resultsGrid" class="results-grid">
-        <!-- Results will be injected here via JavaScript -->
-    </div>
+    <main class="container">
+        <div id="resultsGrid" class="results-grid">
+            <!-- Results will be injected here via JavaScript -->
+        </div>
+    </main>
 
     <script src="/static/js/script.js"></script>
 </body>
