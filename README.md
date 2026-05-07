@@ -1,12 +1,24 @@
-# CineRetriever 🎬
+<div align="center">
 
-**CineRetriever** is a highly advanced, semantic search engine and information retrieval system built specifically for cinema. It processes and indexes a massive dataset of over **134,000+ movies** to allow users to search by mood, plot details, actors, or directors, returning highly relevant cinematic matches in milliseconds.
+# 🎬 CineRetriever
 
-Wrapped in a premium, Netflix-inspired user interface, CineRetriever bridges the gap between complex Information Retrieval mathematics and a flawless user experience.
+**The Professional AI-Driven Cinematic Search Engine**
+
+[![Python 3.11+](https://img.shields.io/badge/Python-3.11+-007ACC?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+[![Flask 3.0](https://img.shields.io/badge/Flask-3.0+-000000?style=flat-square&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+[![NLTK](https://img.shields.io/badge/NLP-NLTK-2B5B84?style=flat-square)](https://www.nltk.org/)
+[![BM25](https://img.shields.io/badge/Algorithm-BM25-FF6F00?style=flat-square)]()
+[![License MIT](https://img.shields.io/badge/License-MIT-F1C40F?style=flat-square)](https://opensource.org/licenses/MIT)
+
+</div>
 
 ---
 
-## ✨ Features
+**CineRetriever** is a next-generation AI-powered cinematic search platform that bridges the gap between complex Information Retrieval mathematics and a flawless user experience. Built with a highly advanced semantic engine, it processes and indexes a massive dataset of over **134,000+ movies**. Users can search by mood, plot details, actors, or directors, and CineRetriever autonomously generates highly relevant cinematic matches — translating unstructured queries into precision results in milliseconds.
+
+---
+
+## ✨ Key Features
 
 ### 🧠 Advanced Information Retrieval Engine
 - **BM25 Algorithmic Ranking**: Uses the state-of-the-art BM25 probabilistic ranking function (the same mathematical foundation behind Elasticsearch) to score and rank movies based on query relevance.
